@@ -1,2 +1,2 @@
 # TomAndJerryGame
-Simple game made on C++.
+Simple game made on C++
