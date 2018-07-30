@@ -6,23 +6,22 @@
 
 using namespace std;
 
-// създава матрица с информация за нея, взета от текстов файл
 Matrix createMatrixFromFile(ifstream &input)
 {
 	string text;
 	int number1;
 	int number2;
-	int furnNumber; // брой мебели
-	int placesForPaint; // брой места, подходящи за разливане с боя
-	int furnX; // x координата на мебел
-	int furnY; // у координата на мебел
+	int furnNumber;
+	int placesForPaint; 
+	int furnX; 
+	int furnY;
 
 	Matrix m;
 
-	int line = 1; // брояч за редове
+	int line = 1; 
 	int tempFurnNumber = 0;
 	int tempPlacesForPaint = 0;
-	int furnLine = 1; // текущ ред на мебел
+	int furnLine = 1;
 	while (getline(input, text))
 	{
 		stringstream ss;
@@ -131,8 +130,6 @@ Matrix createMatrixFromFile(ifstream &input)
 	return m;
 }
 
-
-// достъп до x координата на Jerry в дадена стая
 int getJerryX(Matrix m)
 {
 	for (int i = 0; i < m.getRows(); i++)
@@ -146,7 +143,6 @@ int getJerryX(Matrix m)
 	return -1;
 }
 
-// достъп до y координата на Jerry в дадена стая
 int getJerryY(Matrix m)
 {
 	for (int i = 0; i < m.getRows(); i++)
@@ -160,7 +156,6 @@ int getJerryY(Matrix m)
 	return -1;
 }
 
-// достъп до x координата на Tom в дадена стая
 int getTomX(Matrix m)
 {
 	for (int i = 0; i < m.getRows(); i++)
@@ -174,7 +169,6 @@ int getTomX(Matrix m)
 	return -1;
 }
 
-// достъп до y координата на Tom в дадена стая
 int getTomY(Matrix m)
 {
 	for (int i = 0; i < m.getRows(); i++)
