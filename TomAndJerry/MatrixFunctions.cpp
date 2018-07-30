@@ -143,35 +143,30 @@ void Matrix::allPaths(int startX, int startY, int endX, int endY, vector<vector<
 
 	path.push_back(make_pair(startX, startY));
 	
-	// ако се стигне до исканата клетка
 	if (startX == endX && startY == endY)
 	{
 		pathList.push_back(path);
 	}
 	else
 	{
-		// проверка за задна клетка
 		if (startX + 1 < rows && !visited[startX + 1][startY] &&
 			darray[startX + 1][startY].data != '1')
 		{
 			allPaths(startX + 1, startY, endX, endY, visited, path, pathList);
 		}
 
-		// проверка за лява клетка
 		if (startY - 1 >= 0 && !visited[startX][startY - 1] &&
 			darray[startX][startY - 1].data != '1')
 		{
 			allPaths(startX, startY - 1, endX, endY, visited, path, pathList);
 		}
 
-		// проверка за предна клетка
 		if (startX - 1 >= 0 && !visited[startX - 1][startY] &&
 			darray[startX - 1][startY].data != '1')
 		{
 			allPaths(startX - 1, startY, endX, endY, visited, path, pathList);
 		}
 
-		// проверка за дясна клетка
 		if (startY + 1 < columns && !visited[startX][startY + 1] &&
 			darray[startX][startY + 1].data != '1')
 		{
@@ -185,38 +180,28 @@ void Matrix::shortestPaths(int startX, int startY, int endX, int endY)
 {
 	if (rows * columns <= 1)
 		return;
-	
-	// вектор за посетени клетки
 	vector<vector<bool>> visited = createVisited();
-
-	// вектор от точки (път)
+	
 	vector<pair<int, int>> path;
 
-	// вектор от пътища
 	vector<vector<pair<int, int>>> pathList;
 
 	allPaths(startX, startY, endX, endY, visited, path, pathList);
 
-	// вектор от завои на най-кратките пътища
 	vector<int> shortestPathsTurns;
-	// вектор от боя, разлята по най-кратките пътища
 	vector<int> shortestPathsPaints;
-	// вектор от най-кратките пътища
 	vector<vector<pair<int, int>>> shortestPaths;
-	// вектор от команди, използвани по най-кратките пътища
 	vector<string> shortestPathsCommands;
 
 	if (pathList.size() > 0)
 	{
 		int shortestLen = pathList[0].size();
 
-		// намиране на най-малката дължина на път
 		for (int i = 1; i < pathList.size(); i++)
 		{
 			if (pathList[i].size() < shortestLen)
 				shortestLen = pathList[i].size();
 		}
-		// търсене на пътища с най-малка дължина
 		for (int i = 0; i < pathList.size(); i++)
 		{
 			if (pathList[i].size() == shortestLen)
